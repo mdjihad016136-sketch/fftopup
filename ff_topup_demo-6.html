@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FF TopUp — Free Fire Top-Up</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#06101d;color:#fff}
+nav{background:#081a2d;padding:16px 6%;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5;border-bottom:1px solid #173653}
+.logo{font-size:25px;font-weight:800;color:#ffc400}.logo span{color:#fff}
+nav a{color:#d8e5f2;text-decoration:none;margin-left:20px;font-size:14px}
+.hero{padding:55px 7%;background:linear-gradient(120deg,#071525,#102d49);text-align:center}
+.hero h1{font-size:45px;margin:0 0 10px;color:#ffc400}.hero p{font-size:18px;color:#d8e5f2}.btn{background:#ffc400;color:#101820;border:0;border-radius:10px;padding:14px 28px;font-weight:800;font-size:16px;cursor:pointer}
+.wrap{max-width:1050px;margin:30px auto;padding:0 18px;display:grid;grid-template-columns:2fr 1fr;gap:20px}
+.card{background:#0b1d31;border:1px solid #173653;border-radius:15px;padding:22px;margin-bottom:20px}
+h2{margin-top:0;font-size:20px}.steps{display:flex;gap:8px;margin-bottom:20px}.step{flex:1;text-align:center;padding:10px;border-radius:8px;background:#102b45;color:#b9cad9;font-size:13px}.step.active{background:#ffc400;color:#111}
+label{display:block;margin:10px 0 7px;color:#dce9f4}input{width:100%;padding:14px;border-radius:9px;border:1px solid #315271;background:#071525;color:white;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.pkg{padding:18px 8px;background:#0a1727;border:1px solid #294967;border-radius:10px;text-align:center;cursor:pointer}.pkg:hover,.pkg.selected{border-color:#ffc400;box-shadow:0 0 0 1px #ffc400}.diamond{color:#42a5ff;font-size:20px}.price{color:#ffc400;font-weight:800;margin-top:8px}
+.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pay button{padding:13px;background:#fff;border:2px solid transparent;border-radius:9px;font-weight:800;cursor:pointer}.pay button.selected{border-color:#ffc400}
+.summary p{display:flex;justify-content:space-between;border-bottom:1px solid #203b54;padding-bottom:10px}.total{font-size:24px;color:#ffc400;font-weight:800}
+.order{width:100%;margin-top:18px}.note{font-size:12px;color:#91a7bb;line-height:1.6}
+footer{text-align:center;padding:30px;color:#8da1b4;border-top:1px solid #173653;margin-top:30px}
+@media(max-width:750px){nav a{display:none}.wrap{grid-template-columns:1fr}.hero h1{font-size:34px}.grid{grid-template-columns:repeat(2,1fr)}.pay{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><div class="logo">🔥 <span>FF</span> TOPUP</div><div><a href="#">হোম</a><a href="#packages">ডায়মন্ড</a><a href="#support">সাপোর্ট</a></div></nav>
+
+<section class="hero">
+<h1>FREE FIRE TOP-UP</h1>
+<p>দ্রুত • সহজ • নিরাপদ — আপনার UID দিয়ে প্যাকেজ নির্বাচন করুন</p>
+<button class="btn" onclick="document.getElementById('topup').scrollIntoView()">এখনই Top-Up করুন</button>
+</section>
+
+<main class="wrap" id="topup">
+<section>
+<div class="card">
+<div class="steps"><div class="step active">1. UID</div><div class="step">2. প্যাকেজ</div><div class="step">3. পেমেন্ট</div></div>
+<h2>👤 আপনার Free Fire UID দিন</h2>
+<label for="uid">Player UID</label>
+<input id="uid" type="number" placeholder="যেমন: 1234567890">
+<p class="note">শুধু আপনার Free Fire Player UID দিন। পাসওয়ার্ড কখনো দেবেন না।</p>
+</div>
+
+<div class="card" id="packages">
+<h2>💎 Diamond Package নির্বাচন করুন</h2>
+<div class="grid">
+<div class="pkg" data-d="100" data-p="80"><div class="diamond">💎 100</div><div class="price">৳80</div></div>
+<div class="pkg" data-d="310" data-p="240"><div class="diamond">💎 310</div><div class="price">৳240</div></div>
+<div class="pkg selected" data-d="520" data-p="380"><div class="diamond">💎 520</div><div class="price">৳380</div></div>
+<div class="pkg" data-d="1060" data-p="760"><div class="diamond">💎 1060</div><div class="price">৳760</div></div>
+<div class="pkg" data-d="2180" data-p="1520"><div class="diamond">💎 2180</div><div class="price">৳1,520</div></div>
+<div class="pkg" data-d="5600" data-p="3800"><div class="diamond">💎 5600</div><div class="price">৳3,800</div></div>
+</div>
+</div>
+
+<div class="card">
+<h2>💳 Payment Method</h2>
+<div class="pay">
+<button class="selected">bKash</button><button>Nagad</button><button>Rocket</button>
+</div>
+<button class="btn order" onclick="placeOrder()">অর্ডার করুন</button>
+<p class="note">এই ডেমো পেজে কোনো আসল পেমেন্ট নেওয়া হয় না। আসল সাইটে অনুমোদিত payment gateway/API সংযুক্ত করতে হবে।</p>
+</div>
+</section>
+
+<aside>
+<div class="card summary">
+<h2>🧾 অর্ডার সারাংশ</h2>
+<p><span>UID</span><strong id="sumUid">—</strong></p>
+<p><span>ডায়মন্ড</span><strong id="sumDiamond">520</strong></p>
+<p><span>মূল্য</span><strong class="total" id="sumPrice">৳380</strong></p>
+</div>
+<div class="card" id="support"><h2>🛟 সাপোর্ট</h2><p class="note">কোনো সমস্যা হলে আপনার Order ID দিয়ে সাপোর্টে যোগাযোগ করুন।</p></div>
+</aside>
+</main>
+
+<footer>© 2026 FF TopUp — Demo Website</footer>
+
+<script>
+let selected = document.querySelector('.pkg.selected');
+document.querySelectorAll('.pkg').forEach(p=>{
+  p.addEventListener('click',()=>{
+    document.querySelectorAll('.pkg').forEach(x=>x.classList.remove('selected'));
+    p.classList.add('selected'); selected=p;
+    document.getElementById('sumDiamond').textContent=p.dataset.d;
+    document.getElementById('sumPrice').textContent='৳'+Number(p.dataset.p).toLocaleString('en-US');
+  });
+});
+document.getElementById('uid').addEventListener('input',e=>{
+  document.getElementById('sumUid').textContent=e.target.value || '—';
+});
+document.querySelectorAll('.pay button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.pay button').forEach(x=>x.classList.remove('selected')); b.classList.add('selected');
+}));
+function placeOrder(){
+  const uid=document.getElementById('uid').value.trim();
+  if(!uid){alert('আগে আপনার Free Fire UID দিন।');return;}
+  alert('ডেমো অর্ডার তৈরি হয়েছে! আসল Top-Up চালু করতে payment gateway ও অনুমোদিত Top-Up service সংযোগ করতে হবে।');
+}
+</script>
+</body>
+</html>
